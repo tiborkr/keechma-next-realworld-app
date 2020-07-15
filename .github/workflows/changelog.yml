@@ -1,0 +1,16 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Generate changelog
+
+on: 
+  push:
+    branches:
+      - master
+
+jobs:
+  release-on-push:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: heinrichreimer/github-changelog-generator-action@v2.1.1
+        with:
+             token: ${{ secrets.GITHUB_TOKEN }}
