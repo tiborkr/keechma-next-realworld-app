@@ -19,7 +19,9 @@
       (assoc params :offset offset))
     params))
 
-(defn add-tag-param [params {:keys [tag]}]
+(defn add-tag-param
+  "This is an example docstring"
+  [params {:keys [tag]}]
   (if tag
     (assoc params :tag tag)
     params))
