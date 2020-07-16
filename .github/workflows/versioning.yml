@@ -21,10 +21,10 @@ jobs:
     name: "Generate Changelog after release"
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
+#      - name: Checkout code
+#        uses: actions/checkout@v2
+#        with:
+#          fetch-depth: 0
 
 #      - name: Get Previous Tag
 #        run: |
@@ -35,14 +35,14 @@ jobs:
         name: Generate Changelog
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-#  write-changelog:
-#    needs: generate-changelog
-#    name: "Write changelog to file"
-#    runs-on: ubuntu-latest
-#    steps:
-#      - uses: DamianReeves/write-file-action
-#        with:
-#          path: ${{ env.home}}/CHANGELOG.md
-#          contents: |
-#            echo ${{steps.generate_changelog.outputs.result}}
-#          write-mode: overwrite
+  write-changelog:
+    needs: generate-changelog
+    name: "Write changelog to file"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: DamianReeves/write-file-action
+        with:
+          path: ${{ env.home}}/CHANGELOG.md
+          contents: |
+            echo ${{steps.generate_changelog.outputs.changelog}}
+          write-mode: overwrite
