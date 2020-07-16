@@ -1,16 +1,26 @@
+name: Tag/Release on Push Action and create CHAGELOG
 
-name: Tag/Release on Push Action
-on: 
+on:
   push:
     branches:
       - master
 
 jobs:
-  release-on-push:
+  release:
+    name: Create Release
     runs-on: ubuntu-latest
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: rymndhng/release-on-push-action@master
+      - name: Checkout code
+        uses: actions/checkout@v2
         with:
-          bump_version_scheme: minor
+          fetch-depth: 0
+
+      - name: Get Previous Tag
+        run: |
+          PREV_TAG=$(git describe --abbrev=0 --tags "${{ github.ref }}^")
+          echo "::set-env name=baseRef::$PREV_TAG"
+
+      - uses: heinrichreimer/github-changelog-generator-action@v2.1.1
+        name: Generate Changelog
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
