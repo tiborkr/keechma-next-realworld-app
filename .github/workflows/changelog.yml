@@ -3,7 +3,7 @@
 name: Generate changelog
 
 on: 
-  create:
+  push:
     tags:
       - '*'
 
