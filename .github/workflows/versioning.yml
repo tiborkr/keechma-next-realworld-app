@@ -31,8 +31,8 @@ jobs:
           fetch-depth: 0
       - name: Print
         run: |
-          echo ${{ github.ref }}
-          echo ${{ env.GITHUB_WORKSPACE }}
+          echo "Hello there- ${{ github.ref }}"
+          echo "Hi! ${{ env.GITHUB_WORKSPACE }}"
 
       - uses: heinrichreimer/github-changelog-generator-action@v2.1.1
         name: Generate Changelog
