@@ -14,7 +14,7 @@
             [app.ui.pages.settings :refer [Settings]]
             [app.ui.pages.register :refer [Register]]
             ))
-
+;; test
 (defnc MainRenderer
   [props]
   (let [{:keys [page]} (use-sub props :router)]
