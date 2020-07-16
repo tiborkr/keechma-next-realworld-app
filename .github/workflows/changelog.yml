@@ -3,9 +3,9 @@
 name: Generate changelog
 
 on: 
-  push:
-    branches:
-      - master
+  create:
+    tags:
+      - '*'
 
 jobs:
   generate-changelog:
