@@ -26,12 +26,12 @@ jobs:
 #          PREV_TAG=$(git describe --abbrev=0 --tags "${{ github.ref }}^")
 #          echo "::set-env name=baseRef::$PREV_TAG"
       - name: Checkout code
-          uses: actions/checkout@v2
-          with:
-            fetch-depth: 0
-          run: |
-            echo ${{ github.ref }}
-            echo ${{ env.GITHUB_WORKSPACE }}
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+        run: |
+          echo ${{ github.ref }}
+          echo ${{ env.GITHUB_WORKSPACE }}
 
       - uses: heinrichreimer/github-changelog-generator-action@v2.1.1
         name: Generate Changelog
