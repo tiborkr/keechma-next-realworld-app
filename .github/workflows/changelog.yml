@@ -2,9 +2,10 @@
 
 name: Generate changelog
 
-on: 
-  release:
-   types: [published]
+on:
+  push:
+    tags:
+      - '*'
    
 jobs:
   release-on-push:
