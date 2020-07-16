@@ -37,5 +37,5 @@ jobs:
       - uses: heinrichreimer/github-changelog-generator-action@v2.1.1
         name: Generate Changelog
         with:
-          output: CHANGELOG2.md
+          output: $GITHUB_WORKSPACE/CHANGELOG.md
           token: ${{ secrets.GITHUB_TOKEN }}
