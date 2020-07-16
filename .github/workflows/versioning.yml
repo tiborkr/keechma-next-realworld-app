@@ -40,7 +40,8 @@ jobs:
     name: "Write changelog to file"
     runs-on: ubuntu-latest
     steps:
-      - uses: DamianReeves/write-file-action
+      - uses: DamianReeves/write-file-action@master
+        name: Write to File
         with:
           path: ${{ env.home}}/CHANGELOG.md
           contents: |
