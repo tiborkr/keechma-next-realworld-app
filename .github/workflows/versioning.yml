@@ -1,4 +1,4 @@
-name: Tag/Release on Push Action and create CHAGELOG
+name: Tag/Release on Push Action and create CHANGELOG
 
 on:
   push:
@@ -25,24 +25,12 @@ jobs:
 #        run: |
 #          PREV_TAG=$(git describe --abbrev=0 --tags "${{ github.ref }}^")
 #          echo "::set-env name=baseRef::$PREV_TAG"
-
+      - name: Checkout code
+          uses: actions/checkout@v2
+          with:
+            fetch-depth: 0
       - uses: heinrichreimer/github-changelog-generator-action@v2.1.1
         name: Generate Changelog
         with:
+          output: ${{ env.GITHUB_WORKSPACE }}/CHANGELOG.md
           token: ${{ secrets.GITHUB_TOKEN }}
-  write-changelog:
-    needs: generate-changelog
-    name: "Write changelog to file"
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - uses: DamianReeves/write-file-action@master
-        name: Write to File
-        with:
-          path: ${{ env.home}}/CHANGELOG.md
-          contents: |
-            echo ${{steps.generate_changelog.outputs.changelog}}
-          write-mode: overwrite
