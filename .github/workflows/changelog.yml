@@ -3,10 +3,9 @@
 name: Generate changelog
 
 on: 
-  push:
-    branches:
-      - master
-
+  release:
+   types: [published]
+   
 jobs:
   release-on-push:
     runs-on: ubuntu-latest
