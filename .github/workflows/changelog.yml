@@ -10,7 +10,6 @@ jobs:
   release-on-push:
     runs-on: ubuntu-latest
     steps:
-      - uses: heinrichreimer/github-changelog-generator-action@v2.1.1
+      - uses: nuuday/github-changelog-action@v1.0.0
         with:
-          output: CHANGELOG.md
-          token: ${{ secrets.GITHUB_TOKEN }}
+          next_version: ${{ github.ref }}
