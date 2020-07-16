@@ -3,14 +3,28 @@
 name: Generate changelog
 
 on:
-  push:
-    tags:
-      - '*'
-   
+  release:
+    types: [created]
+
 jobs:
-  release-on-push:
+  generate-changelog:
     runs-on: ubuntu-latest
     steps:
-      - uses: nuuday/github-changelog-action@v1.0.0
+      - name: Checkout code
+        uses: actions/checkout@v2
         with:
-          next_version: ${{ github.ref }}
+          fetch-depth: 0
+
+      - name: Get Previous Tag
+        run: |
+          PREV_TAG=$(git describe --abbrev=0 --tags "${{ github.ref }}^")
+          echo "::set-env name=baseRef::$PREV_TAG"
+
+      - name: Generate Changelog
+        id: generate_changelog
+        uses: nblagoev/pull-release-notes-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          base-ref: ${{ env.baseRef }}
+          head-ref: ${{ github.ref }}
