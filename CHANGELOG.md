@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.30.0](https://github.com/tiborkr/keechma-next-realworld-app/tree/v0.30.0) (2020-07-19)
+
+[Full Changelog](https://github.com/tiborkr/keechma-next-realworld-app/compare/v0.29.0...v0.30.0)
+
 ## [v0.29.0](https://github.com/tiborkr/keechma-next-realworld-app/tree/v0.29.0) (2020-07-16)
 
 [Full Changelog](https://github.com/tiborkr/keechma-next-realworld-app/compare/v0.28.0...v0.29.0)
